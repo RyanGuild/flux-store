@@ -22,10 +22,10 @@ def create_store(reducer, initial_state=None, store_behavior: StoreBehavior = "g
 
   def get_state():
     if store_behavior=="lazy":
-      for i, thunk in enumerate(thunks):
-        if not thunk.is_alive():
-          thunks.pop(i)
-          dispatches.append(thunk.join())
+      # for i, thunk in enumerate(thunks):
+      #   if not thunk.is_alive():
+      #     thunks.pop(i)
+      #     dispatches.append(thunk.join())
       for dispatch in dispatches:
         state = reducer(state, dispatch)
       dispatches.clear()
@@ -33,13 +33,13 @@ def create_store(reducer, initial_state=None, store_behavior: StoreBehavior = "g
     return state
 
   def dispatch(action: Action):
-    if "thunk" in action:
-      thunks.append(Thread(target=lambda : asyncio.run(action.thunk(action.payload))).start())
-    if store_behavior=="greedy":
-      for i, thunk in enumerate(thunks):
-        if not thunk.is_alive():
-          thunks.pop(i)
-          dispatches.append(thunk.join())
+    # if "thunk" in action:
+    #   thunks.append(Thread(target=lambda : asyncio.run(action.thunk(action.payload))).start())
+    # if store_behavior=="greedy":
+    #   for i, thunk in enumerate(thunks):
+    #     if not thunk.is_alive():
+    #       thunks.pop(i)
+    #       dispatches.append(thunk.join())
       for dispatch in dispatches:
         state = reducer(state, dispatch)
     dispatches.append(action)
