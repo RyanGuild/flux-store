@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "pyflux"
+name = "fluxstore"
 version = "0.1.0"
 description = ""
 authors = ["Ryan D. Guild <rdg27@pitt.edu>"]
 license = "MIT"
-packages = [{include = "flux-store", from = "./packages"}]
+packages = [{include = "fluxstore", from = "./packages"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
