@@ -1,7 +1,8 @@
+import asyncio
+from threading import Thread
 from .create_reducer import create_reducer, Reducer
 from .create_action import Action
-from threading import Thread
-import asyncio
+
 
 type StoreBehavior = "greedy" | "lazy"
 
